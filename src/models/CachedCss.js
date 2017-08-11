@@ -35,6 +35,7 @@ extend(CachedCss.prototype, {
   },
 
   save: function (attrs, cb) {
+    console.log('save');
     if (attrs) { extend(this.attributes, attrs); }
 
     this.client.expire(this.finders.key, this.expireAfter);
@@ -44,22 +45,27 @@ extend(CachedCss.prototype, {
   },
 
   del: function (cb) {
+    console.log('del');
     this.client.del(this.finders.key, cb);
   },
 
   createStub: function (cb) {
+    console.log('createStub');
     this.save({ status: 'waiting' }, cb);
   },
 
   finish: function (content, cb) {
+    console.log('finished');
     this.save({ status: 'done', content: content }, cb);
   },
 
   failed: function (cb) {
+    console.log('failed');
     this.save({ status: 'failed' }, cb);
   },
 
   begin: function (cb) {
+    console.log('begin');
     this.save({ status: 'working' }, cb);
   },
 

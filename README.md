@@ -41,3 +41,4 @@ Use the Ruby on Rails client to manage rewriting and lazy-loading your other CSS
 compiled and is available.
 
 [RailsCriticalCssServer](https://github.com/wheeyls/rails_critical_css_server)
+

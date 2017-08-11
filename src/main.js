@@ -11,6 +11,7 @@ if (cluster.isMaster) {
     console.log('Listening on port:', this.address().port);
   });
 
+  console.log('forking: ' + workerCount);
   for (var i = 0, ii = workerCount; i < ii; i += 1) { cluster.fork(); }
 } else {
   workers.start();
