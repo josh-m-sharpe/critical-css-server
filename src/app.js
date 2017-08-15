@@ -26,6 +26,7 @@ function prepareApp(config) {
     requireNestedParams('page', ['key', 'url', 'css']),
 
     function (req, res) {
+      console.log(req.body.page);
       worker.perform(req.body).then(function (item) {
         if (item.attributes.content) {
           res.send(item.attributes.content);

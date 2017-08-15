@@ -3,9 +3,13 @@ var bluebird = require('bluebird');
 
 function QueueBuildRequests(client, queue) {
   this.perform = bluebird.promisify(function (data, done) {
+    console.log('perform');
+    console.log(data);
     var item = new CachedCss(client, data.page);
 
     item.load().then(function (attributes) {
+      console.log('QueueBuildRequests status:');
+      console.log(attributes.status);
       if (['new', 'failed'].includes(attributes.status)) {
         item.createStub(function (err) {
           if (err) { return done(err); }
@@ -17,7 +21,7 @@ function QueueBuildRequests(client, queue) {
       } else {
         done(null, item);
       }
-    }).catch(function (e) { done(e); });
+    }).catch(function (e) {console.log('error'); done(e); });
   });
 }
 
